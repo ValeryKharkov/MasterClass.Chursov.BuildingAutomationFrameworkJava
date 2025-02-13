@@ -1,4 +1,5 @@
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -7,6 +8,7 @@ public class ApiTests {
 
     @Test
     void createUser() {
+        //AAA: Arrange -> Act -> Assert
         String body = """
                 {
                   "id": 0,
@@ -28,5 +30,6 @@ public class ApiTests {
                     .post("user")
                 .andReturn();
 
+        Assertions.assertEquals(200, response.getStatusCode());
     }
 }
