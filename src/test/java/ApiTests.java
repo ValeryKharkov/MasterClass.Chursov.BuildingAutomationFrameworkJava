@@ -20,14 +20,24 @@ public class ApiTests {
                   "phone": "string",
                   "userStatus": 0
                 }""";
-
-        Response response = given()
+        // Вариант 1
+        given()
                     .header("accept", "application/json")
                     .header("Content-Type", "application/json")
                     .baseUri("https://petstore.swagger.io/v2/")
                 .when()
                     .body(body)
                     .post("user")
+                .then()
+                    .statusCode(200);
+       // Вариант 2
+       Response response = given()
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .baseUri("https://petstore.swagger.io/v2/")
+                .when()
+                .body(body)
+                .post("user")
                 .andReturn();
 
         Assertions.assertEquals(200, response.getStatusCode());
